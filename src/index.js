@@ -1,27 +1,27 @@
 import React from 'react'
 
 const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
-  const [secondsLeft, setSecondsLeft] = React.useState(0);
+  const [timeLeft, setTimeLeft] = React.useState(0);
   const start = React.useCallback(
-    (newTimeToCount) => setSecondsLeft(newTimeToCount !== undefined ? newTimeToCount : timeToCount),
+    (newTimeToCount) => setTimeLeft(newTimeToCount !== undefined ? newTimeToCount : timeToCount),
     [],
   );
 
   React.useEffect(
     () => {
-      if (secondsLeft === 0) {
+      if (timeLeft === 0) {
         return;
       }
 
       window.setTimeout(() => {
-        const nextSecondsLeft = secondsLeft - interval > 0 ? secondsLeft - interval : 0;
-        setSecondsLeft(nextSecondsLeft);
+        const nextSecondsLeft = timeLeft - interval > 0 ? timeLeft - interval : 0;
+        setTimeLeft(nextSecondsLeft);
       }, interval);
     },
-    [secondsLeft],
+    [timeLeft],
   );
 
-  return [secondsLeft, start];
+  return [timeLeft, start];
 }
 
 export default useCountDown;
