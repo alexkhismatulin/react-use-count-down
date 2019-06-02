@@ -23,25 +23,25 @@ var useCountDown = function useCountDown() {
 
   var _React$useState = _react["default"].useState(0),
       _React$useState2 = _slicedToArray(_React$useState, 2),
-      secondsLeft = _React$useState2[0],
-      setSecondsLeft = _React$useState2[1];
+      timeLeft = _React$useState2[0],
+      setTimeLeft = _React$useState2[1];
 
   var start = _react["default"].useCallback(function (newTimeToCount) {
-    return setSecondsLeft(newTimeToCount !== undefined ? newTimeToCount : timeToCount);
+    return setTimeLeft(newTimeToCount !== undefined ? newTimeToCount : timeToCount);
   }, []);
 
   _react["default"].useEffect(function () {
-    if (secondsLeft === 0) {
+    if (timeLeft === 0) {
       return;
     }
 
     window.setTimeout(function () {
-      var nextSecondsLeft = secondsLeft - interval > 0 ? secondsLeft - interval : 0;
-      setSecondsLeft(nextSecondsLeft);
+      var nextSecondsLeft = timeLeft - interval > 0 ? timeLeft - interval : 0;
+      setTimeLeft(nextSecondsLeft);
     }, interval);
-  }, [secondsLeft]);
+  }, [timeLeft]);
 
-  return [secondsLeft, start];
+  return [timeLeft, start];
 };
 
 var _default = useCountDown;
