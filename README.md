@@ -1,4 +1,4 @@
-# react-use-count-down
+# react-countdown-hook
 [![CircleCI](https://circleci.com/gh/alexkhismatulin/react-use-count-down.svg?style=svg)](https://circleci.com/gh/alexkhismatulin/react-use-count-down)
 [![Coverage Status](https://coveralls.io/repos/github/alexkhismatulin/react-use-count-down/badge.svg?branch=master)](https://coveralls.io/github/alexkhismatulin/react-use-count-down?branch=master)
 
@@ -9,19 +9,19 @@ React countdown hook.
 Using npm:
 
 ```sh
-$ npm install --save react-use-count-down
+$ npm install --save react-countdown-hook
 ```
 
 Using yarn:
 
 ```sh
-$ yarn add react-use-count-down
+$ yarn add react-countdown-hook
 ```
 
 ## Usage
 ```javascript
 import React from 'react';
-import useCountDown from 'react-use-count-down';
+import useCountDown from 'react-countdown-hook';
 
 const initialTime = 60 * 1000; // initial time in milliseconds, defaults to 60000
 const interval = 1000; // interval to change remaining time amount, defaults to 1000
@@ -53,7 +53,7 @@ const render = () => {
 }
 ```
 
-[Check out more usage examples in playground.](https://stackblitz.com/edit/react-use-count-down?file=index.js "react-use-count-down on stackblitz")
+[Check out more usage examples in playground.](https://stackblitz.com/edit/react-use-count-down?file=index.js "react-countdown-hook on stackblitz")
 
 ## API
 ```javascript

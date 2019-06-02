@@ -1,5 +1,5 @@
 {
-  "name": "react-use-count-down",
+  "name": "react-countdown-hook",
   "version": "0.1.0",
   "description": "React countdown hook.",
   "keywords": [
@@ -8,9 +8,11 @@
     "hooks",
     "timer",
     "react",
-    "react-hooks"
+    "react-hooks",
+    "react-use-countdown"
   ],
-  "repository": "https://github.com/alexkhismatulin/react-use-count-down.git",
+  "repository": "https://github.com/alexkhismatulin/react-use-count-down",
+  "homepage": "https://github.com/alexkhismatulin/react-use-count-down#readme",
   "license": "MIT",
   "author": "Alex Khismatulin <alexkhismatulin@gmail.com>",
   "main": "dist/index.js",
