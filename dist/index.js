@@ -30,16 +30,22 @@ var useCountDown = function useCountDown() {
     return setTimeLeft(newTimeToCount !== undefined ? newTimeToCount : timeToCount);
   }, []);
 
+  var timer = null;
+
   _react["default"].useEffect(function () {
     if (timeLeft === 0) {
       return;
     }
 
-    window.setTimeout(function () {
+    window.clearTimeout(timer);
+    timer = window.setTimeout(function () {
       var nextSecondsLeft = timeLeft - interval > 0 ? timeLeft - interval : 0;
       setTimeLeft(nextSecondsLeft);
     }, interval);
-  }, [timeLeft]);
+    return function () {
+      return window.clearTimeout(timer);
+    };
+  }, [timeLeft, timer]);
 
   return [timeLeft, start];
 };
