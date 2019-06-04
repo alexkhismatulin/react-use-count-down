@@ -1,6 +1,7 @@
 # react-countdown-hook
 [![CircleCI](https://circleci.com/gh/alexkhismatulin/react-use-count-down.svg?style=svg)](https://circleci.com/gh/alexkhismatulin/react-use-count-down)
 [![Coverage Status](https://coveralls.io/repos/github/alexkhismatulin/react-use-count-down/badge.svg?branch=master)](https://coveralls.io/github/alexkhismatulin/react-use-count-down?branch=master)
+[![npm](https://img.shields.io/npm/v/react-countdown-hook.svg)](https://www.npmjs.com/package/react-countdown-hook "react-countdown-hook on npm")
 
 React countdown hook.
 
