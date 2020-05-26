@@ -2,28 +2,37 @@ import React from 'react';
 
 const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
   const [timeLeft, setTimeLeft] = React.useState(0);
+  const timer = React.useRef({});
+
+  const run = (ts) => {
+    if (!timer.current.started) {
+      timer.current.started = ts;
+      timer.current.lastInterval = ts;
+    }
+
+    if ((ts - timer.current.lastInterval) >= interval) {
+      timer.current.lastInterval += interval;
+      setTimeLeft(timeLeft => timeLeft - interval);
+    }
+
+    if (ts - timer.current.started < timer.current.timeToCount) {
+      timer.current.requestId = window.requestAnimationFrame(run);
+    }
+  }
+
   const start = React.useCallback(
-    (newTimeToCount) => setTimeLeft(newTimeToCount !== undefined ? newTimeToCount : timeToCount),
-    [],
-  );
+    (ttc) => {
+      window.cancelAnimationFrame(timer.current.requestId);
 
-  let timer = null;
+      const newTimeToCount = ttc !== undefined ? ttc : timeToCount
+      timer.current.started = null;
+      timer.current.lastInterval = null;
+      timer.current.timeToCount = newTimeToCount;
+      timer.current.requestId = window.requestAnimationFrame(run);
 
-  React.useEffect(
-    () => {
-      if (timeLeft === 0) {
-        return;
-      }
-
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        const nextSecondsLeft = timeLeft - interval > 0 ? timeLeft - interval : 0;
-        setTimeLeft(nextSecondsLeft);
-      }, interval);
-
-      return () => window.clearTimeout(timer);
+      setTimeLeft(newTimeToCount);
     },
-    [timeLeft, timer],
+    [timer, setTimeLeft],
   );
 
   return [timeLeft, start];

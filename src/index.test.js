@@ -7,8 +7,8 @@ const Test = ({ timeToCount, interval }) => {
   const [timeLeft, start] = useCountdown(timeToCount, interval);
 
   const onClick = React.useCallback(() => {
-    start()
-  }, [start])
+    start();
+  }, [start]);
 
   return (
     <>
