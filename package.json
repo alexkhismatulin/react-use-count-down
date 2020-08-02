@@ -35,8 +35,6 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "@cypress/code-coverage": "^3.8.1",
-    "@testing-library/react": "^10.4.7",
-    "@testing-library/react-hooks": "^3.4.1",
     "babel-core": "^7.0.0-bridge",
     "babel-plugin-istanbul": "^6.0.0",
     "coveralls": "^3.1.0",
