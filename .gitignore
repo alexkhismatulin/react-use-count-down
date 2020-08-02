@@ -10,3 +10,8 @@
 
 # Build
 yarn-error.log
+.cache
+coverage
+.nyc_output
+cypress/videos
+cypress/screenshots

@@ -12,7 +12,10 @@ const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
 
     if ((ts - timer.current.lastInterval) >= interval) {
       timer.current.lastInterval += interval;
-      setTimeLeft(timeLeft => timeLeft - interval);
+      setTimeLeft((timeLeft) => {
+        timer.current.timeLeft = timeLeft - interval;
+        return timer.current.timeLeft;
+      });
     }
 
     if (ts - timer.current.started < timer.current.timeToCount) {
@@ -32,10 +35,35 @@ const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
 
       setTimeLeft(newTimeToCount);
     },
-    [timer, setTimeLeft],
+    [],
   );
 
-  return [timeLeft, start];
+  const pause = React.useCallback(
+    () => {
+      window.cancelAnimationFrame(timer.current.requestId);
+      timer.current.started = null;
+      timer.current.lastInterval = null;
+      timer.current.timeToCount = timer.current.timeLeft;
+    },
+    [],
+  );
+
+  const resume = React.useCallback(
+    () => {
+      if (!timer.current.started && timer.current.timeLeft > 0) {
+        window.cancelAnimationFrame(timer.current.requestId);
+        timer.current.requestId = window.requestAnimationFrame(run);
+      }
+    },
+    [],
+  );
+
+  const actions = React.useMemo(
+    () => ({ start, pause, resume }),
+    [],
+  );
+
+  return [timeLeft, actions];
 }
 
 export default useCountDown;

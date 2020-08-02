@@ -17,42 +17,36 @@
   "author": "Alex Khismatulin <alexkhismatulin@gmail.com>",
   "main": "dist/index.js",
   "scripts": {
+    "start:demo": "parcel demo/index.html",
     "build": "rm -rf dist && babel src --out-dir dist --ignore **/*.test.js",
-    "coveralls": "jest --coverage --silent --coverageReporters=text-lcov | coveralls",
-    "test": "jest"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "test": "cypress open",
+    "test:ci": "NODE_ENV=test npm run start:demo & wait-on http://localhost:1234 & cypress run",
+    "coverage": "nyc report --reporter=lcov"
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm run build && git add dist"
     }
   },
-  "jest": {
-    "coverageDirectory": "coverage",
-    "coveragePathIgnorePatterns": [
-      "jest-setup.js"
-    ],
-    "coverageReporters": [
-      "html",
-      "lcov",
-      "text"
-    ],
-    "setupFilesAfterEnv": [
-      "./jest-setup.js"
-    ]
-  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
+    "@cypress/code-coverage": "^3.8.1",
+    "@testing-library/react": "^10.4.7",
+    "@testing-library/react-hooks": "^3.4.1",
     "babel-core": "^7.0.0-bridge",
+    "babel-plugin-istanbul": "^6.0.0",
     "coveralls": "^3.1.0",
+    "cypress": "^4.11.0",
     "husky": "^2.7.0",
-    "jest": "^24.9.0",
-    "jest-dom": "^3.5.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-testing-library": "^6.1.2"
+    "nyc": "^15.1.0",
+    "parcel-bundler": "^1.12.4",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "wait-on": "^5.1.0"
   },
   "peerDependencies": {
     "react": "^16.8.0"

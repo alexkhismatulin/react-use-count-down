@@ -41,7 +41,8 @@ var useCountDown = function useCountDown() {
     if (ts - timer.current.lastInterval >= interval) {
       timer.current.lastInterval += interval;
       setTimeLeft(function (timeLeft) {
-        return timeLeft - interval;
+        timer.current.timeLeft = timeLeft - interval;
+        return timer.current.timeLeft;
       });
     }
 
@@ -58,9 +59,31 @@ var useCountDown = function useCountDown() {
     timer.current.timeToCount = newTimeToCount;
     timer.current.requestId = window.requestAnimationFrame(run);
     setTimeLeft(newTimeToCount);
-  }, [timer, setTimeLeft]);
+  }, []);
 
-  return [timeLeft, start];
+  var pause = _react["default"].useCallback(function () {
+    window.cancelAnimationFrame(timer.current.requestId);
+    timer.current.started = null;
+    timer.current.lastInterval = null;
+    timer.current.timeToCount = timer.current.timeLeft;
+  }, []);
+
+  var resume = _react["default"].useCallback(function () {
+    if (!timer.current.started && timer.current.timeLeft > 0) {
+      window.cancelAnimationFrame(timer.current.requestId);
+      timer.current.requestId = window.requestAnimationFrame(run);
+    }
+  }, []);
+
+  var actions = _react["default"].useMemo(function () {
+    return {
+      start: start,
+      pause: pause,
+      resume: resume
+    };
+  }, []);
+
+  return [timeLeft, actions];
 };
 
 var _default = useCountDown;
