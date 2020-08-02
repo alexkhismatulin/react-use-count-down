@@ -1,14 +1,7 @@
 {
   "env": {
     "test": {
-      "presets": [
-        ["@babel/env", {
-          "targets": {
-            "node": true
-          }
-        }],
-        "@babel/react"
-      ]
+      "plugins": ["istanbul"]
     }
   },
   "presets": ["@babel/env", "@babel/react"]
