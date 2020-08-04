@@ -24,11 +24,6 @@
     "test:ci": "NODE_ENV=test npm run start:demo & wait-on http://localhost:1234 & cypress run",
     "coverage": "nyc report --reporter=lcov"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run build && git add dist"
-    }
-  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
@@ -39,7 +34,6 @@
     "babel-plugin-istanbul": "^6.0.0",
     "coveralls": "^3.1.0",
     "cypress": "^4.11.0",
-    "husky": "^2.7.0",
     "nyc": "^15.1.0",
     "parcel-bundler": "^1.12.4",
     "react": "^16.8.0",
