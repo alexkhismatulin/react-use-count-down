@@ -38,10 +38,12 @@ var useCountDown = function useCountDown() {
       timer.current.lastInterval = ts;
     }
 
-    if (ts - timer.current.lastInterval >= interval) {
-      timer.current.lastInterval += interval;
+    var localInterval = Math.min(interval, timer.current.timeLeft || Infinity);
+
+    if (ts - timer.current.lastInterval >= localInterval) {
+      timer.current.lastInterval += localInterval;
       setTimeLeft(function (timeLeft) {
-        timer.current.timeLeft = timeLeft - interval;
+        timer.current.timeLeft = timeLeft - localInterval;
         return timer.current.timeLeft;
       });
     }
