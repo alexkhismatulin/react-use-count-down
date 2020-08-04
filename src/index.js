@@ -58,8 +58,19 @@ const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
     [],
   );
 
+  const reset = React.useCallback(
+    () => {
+      if (timer.current.timeLeft) {
+        window.cancelAnimationFrame(timer.current.requestId);
+        timer.current = {};
+        setTimeLeft(0);
+      }
+    },
+    [],
+  );
+
   const actions = React.useMemo(
-    () => ({ start, pause, resume }),
+    () => ({ start, pause, resume, reset }),
     [],
   );
 

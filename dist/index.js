@@ -75,11 +75,20 @@ var useCountDown = function useCountDown() {
     }
   }, []);
 
+  var reset = _react["default"].useCallback(function () {
+    if (timer.current.timeLeft) {
+      window.cancelAnimationFrame(timer.current.requestId);
+      timer.current = {};
+      setTimeLeft(0);
+    }
+  }, []);
+
   var actions = _react["default"].useMemo(function () {
     return {
       start: start,
       pause: pause,
-      resume: resume
+      resume: resume,
+      reset: reset
     };
   }, []);
 

@@ -32,9 +32,16 @@ const App = () => {
       </button>
       <button
         id="resume"
+        style={buttonStyle}
         onClick={() => actions.resume()}
       >
         Resume
+      </button>
+      <button
+        id="reset"
+        onClick={() => actions.reset()}
+      >
+        Reset
       </button>
     </div>
   );
