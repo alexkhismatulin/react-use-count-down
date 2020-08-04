@@ -7,6 +7,7 @@ context('react-use-countdown – reset', () => {
     cy.get('#start').click();
     cy.get('#time-left').should('contain', '10.00');
 
+    cy.wait(5 * 1000);
     cy.get('#reset').click();
     cy.get('#time-left').should('contain', '0.00');
   });
