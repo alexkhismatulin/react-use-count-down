@@ -10,10 +10,11 @@ const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
       timer.current.lastInterval = ts;
     }
 
-    if ((ts - timer.current.lastInterval) >= interval) {
-      timer.current.lastInterval += interval;
+    const localInterval = Math.min(interval, (timer.current.timeLeft || Infinity));
+    if ((ts - timer.current.lastInterval) >= localInterval) {
+      timer.current.lastInterval += localInterval;
       setTimeLeft((timeLeft) => {
-        timer.current.timeLeft = timeLeft - interval;
+        timer.current.timeLeft = timeLeft - localInterval;
         return timer.current.timeLeft;
       });
     }
