@@ -12,8 +12,6 @@
     </a>
 </p>
 
-React countdown hook.
-
 ## Installation
 Using npm:
 
