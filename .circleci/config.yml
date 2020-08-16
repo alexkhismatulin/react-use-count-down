@@ -11,12 +11,6 @@ jobs:
     steps:
       - checkout
 
-      - restore_cache:
-          name: Restore node_modules cache
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-
       - run:
           name: Install dependencies
           command: npm install
@@ -28,12 +22,6 @@ jobs:
       - run:
           name: Coverage
           command: npm run coveralls
-
-      - save_cache:
-          name: Save node_modules cache
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
 
   deploy_tag:
       filters:
