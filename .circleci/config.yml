@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cypress/base:10
+      - image: cypress/base:10.18.1
         environment:
           TERM: xterm
 
@@ -18,23 +18,50 @@ jobs:
             - v1-dependencies-
 
       - run:
-          name: Node version
-          command: node --version
-
-      - run:
           name: Install dependencies
-          command: yarn install --frozen-lockfile
+          command: npm install
 
       - run:
           name: Tests
-          command: yarn test:ci
+          command: npm run test:ci
 
       - run:
           name: Coverage
-          command: yarn coveralls
+          command: npm run coveralls
 
       - save_cache:
           name: Save node_modules cache
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
+  deploy_tag:
+      filters:
+        tags:
+          only: /.*/
+
+      docker:
+        - image: cypress/base:10.18.1
+          environment:
+            TERM: xterm
+
+      working_directory: ~/repo
+
+      steps:
+        - checkout
+
+        - run:
+            name: Install dependencies
+            command: npm install
+
+        - run:
+            name: Build source
+            command: npm run build
+
+        - run:
+            name: Authenticate with registry
+            command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+
+        - run:
+            name: Publish package
+            command: npm publish

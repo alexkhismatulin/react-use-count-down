@@ -15,31 +15,27 @@
   "homepage": "https://github.com/alexkhismatulin/react-use-count-down#readme",
   "license": "MIT",
   "author": "Alex Khismatulin <alexkhismatulin@gmail.com>",
+  "source": "src/index.js",
   "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
   "scripts": {
     "start:demo": "parcel demo/index.html",
-    "build": "rm -rf dist && babel src --out-dir dist --ignore **/*.test.js",
+    "build": "NODE_ENV=production microbundle",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "test": "cypress open",
     "test:ci": "NODE_ENV=test npm run start:demo & wait-on http://localhost:1234 & cypress run",
     "coverage": "nyc report --reporter=lcov"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run build && git add dist"
-    }
-  },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "@cypress/code-coverage": "^3.8.1",
-    "babel-core": "^7.0.0-bridge",
     "babel-plugin-istanbul": "^6.0.0",
     "coveralls": "^3.1.0",
     "cypress": "^4.11.0",
-    "husky": "^2.7.0",
+    "microbundle": "^0.12.3",
     "nyc": "^15.1.0",
     "parcel-bundler": "^1.12.4",
     "react": "^16.8.0",

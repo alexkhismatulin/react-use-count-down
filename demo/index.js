@@ -21,7 +21,7 @@ const App = () => {
         style={buttonStyle}
         onClick={() => actions.start(4200)}
       >
-        Restart
+        Restart with 4.2s
       </button>
       <button
         id="pause"
