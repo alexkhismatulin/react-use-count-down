@@ -28,21 +28,21 @@
     "coverage": "nyc report --reporter=lcov"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/preset-react": "^7.9.4",
-    "@cypress/code-coverage": "^3.8.1",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@cypress/code-coverage": "^3.8.8",
     "babel-plugin-istanbul": "^6.0.0",
     "coveralls": "^3.1.0",
-    "cypress": "^4.11.0",
-    "microbundle": "^0.12.3",
+    "cypress": "^4.12.1",
+    "microbundle": "^0.12.4",
     "nyc": "^15.1.0",
     "parcel-bundler": "^1.12.4",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "wait-on": "^5.1.0"
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "wait-on": "^5.2.0"
   },
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": "^16.8.0 || ^17.0.0"
   }
 }
