@@ -75,6 +75,8 @@ const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
     [],
   );
 
+  React.useEffect(() => reset, []);
+
   return [timeLeft, actions];
 }
 
