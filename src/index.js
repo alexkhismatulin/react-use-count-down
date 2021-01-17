@@ -21,6 +21,9 @@ const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
 
     if (ts - timer.current.started < timer.current.timeToCount) {
       timer.current.requestId = window.requestAnimationFrame(run);
+    } else {
+      timer.current = {};
+      setTimeLeft(0);
     }
   }
 
