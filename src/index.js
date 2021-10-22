@@ -78,7 +78,9 @@ const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
     [],
   );
 
-  React.useEffect(() => reset, []);
+  React.useEffect(() => {
+    return () => window.cancelAnimationFrame(timer.current.requestId);
+  }, []);
 
   return [timeLeft, actions];
 }
