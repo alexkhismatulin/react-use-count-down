@@ -6,8 +6,14 @@ declare module "react-countdown-hook" {
     reset(): void;
   }
 
+  interface Options {
+    interval?: number;
+    onFinish?: () => void;
+    onStart?: () => void;
+  }
+
   interface UseCountDown {
-    (timeToCount: number, interval?: number): [number, Actions];
+    (timeToCount: number, options?: Options): [number, Actions];
   }
 
   const useCountDown: UseCountDown;

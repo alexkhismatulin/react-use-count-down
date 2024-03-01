@@ -5,7 +5,12 @@ import useCountDown from "../src"
 const buttonStyle = { marginRight: '10px' };
 
 const App = () => {
-  const [timeLeft, actions] = useCountDown(10000, 500);
+  const [isTimesUp, setTimesUp] = React.useState(false);
+  const [timeLeft, actions] = useCountDown(10000, {
+    interval: 500,
+    onFinish: () => setTimesUp(true),
+    onStart: () => setTimesUp(false),
+  });
   return (
     <div style={{ textAlign: 'center' }}>
       <h1 id="time-left">{(timeLeft / 1000).toFixed(2)}</h1>
@@ -43,6 +48,7 @@ const App = () => {
       >
         Reset
       </button>
+      {isTimesUp && <h1 id="times-up">Finished</h1>}
     </div>
   );
 };
