@@ -32,9 +32,11 @@ import useCountDown from 'react-countdown-hook';
 
 const initialTime = 60 * 1000; // initial time in milliseconds, defaults to 60000
 const interval = 1000; // interval to change remaining time amount, defaults to 1000
+const onStart = () => console.log("Starting...")
+const onFinish = () => console.log("Finished!")
 
 const render = () => {
-  const [timeLeft, { start, pause, resume, reset }] = useCountDown(initialTime, interval);
+  const [timeLeft, { start, pause, resume, reset }] = useCountDown(initialTime, {interval, onStart, onFinish});
   
   // start the timer during the first render
   React.useEffect(() => {
@@ -70,7 +72,11 @@ or [in the demo project](./demo/index.js "react-countdown-hook demo project")
 #### Parameters
 Takes a default countdown time and interval time.
 * `timeToCount` {`Number`} Time in milliseconds that countdown should start with. **Defaults to `60000`**
-* `interval` {`Number`} Time in milliseconds representing the frequency that countdown should update with. **Defaults to `1000`**
+* `options` {`Object`} Optional configurations for the countdown
+  * `interval` {`Number`} Time in milliseconds representing the frequency that countdown should update with. **Defaults to `1000`**
+  * `onStart` {`Function`} A function to be called once the countdown starts **Defaults to `undefined`**
+  * `onFinish` {`Function`} A function to be called once the countdown finish **Defaults to `undefined`**
+
 
 #### Return value
 Returns an array with remaining time and actions object.

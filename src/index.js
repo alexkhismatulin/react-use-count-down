@@ -1,6 +1,6 @@
 import React from 'react';
 
-const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
+const useCountDown = (timeToCount = 60 * 1000, {interval = 1000, onFinish, onStart}) => {
   const [timeLeft, setTimeLeft] = React.useState(0);
   const timer = React.useRef({});
 
@@ -24,6 +24,7 @@ const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
     } else {
       timer.current = {};
       setTimeLeft(0);
+      onFinish && onFinish();
     }
   }
 
@@ -38,6 +39,7 @@ const useCountDown = (timeToCount = 60 * 1000, interval = 1000) => {
       timer.current.requestId = window.requestAnimationFrame(run);
 
       setTimeLeft(newTimeToCount);
+      onStart && onStart()
     },
     [],
   );
